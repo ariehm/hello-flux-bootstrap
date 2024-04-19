@@ -1,0 +1,13 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: helloworld-helm-chart-repo
+  namespace: flux-system
+spec:
+  provider: generic
+  type: "oci"
+  interval: 5m0s
+  url: oci://ghcr.io/ariehm/helloworld/helloworld-helm
+  secretRef:
+    name: ghcr-cred
