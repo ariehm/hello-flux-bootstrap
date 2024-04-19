@@ -18,3 +18,9 @@ spec:
   #         paths:
   #           - path: /
   #             pathType: ImplementationSpecific
+  values:
+    jobs:
+      hello-env-var:
+        env:
+        - name: ECHO_VAR
+          value: "staging"
