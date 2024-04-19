@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: helloworld-helm-chart-repo
+  name: helloworld-helm
   namespace: default
 spec:
   provider: generic
@@ -11,6 +11,20 @@ spec:
   url: oci://ghcr.io/ariehm/helloworld/helloworld-helm
   secretRef:
     name: ghcr-cred
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmChart
+metadata:
+  name: helloworld-helm
+  namespace: default
+spec:
+  interval: 1m0s
+  chart: helloworld-helm
+  reconcileStrategy: ChartVersion
+  sourceRef:
+    kind: HelmRepository
+    name: helloworld-helm
+  version: '0.1.0'
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
